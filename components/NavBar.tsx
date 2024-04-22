@@ -26,8 +26,9 @@ export default function NavBar() {
 
         getUser(router)
             .then((data: any) => {
-
-                if(data?.error?.name === "JsonWebTokenError"){
+               
+                if(data?.error){
+                    alert("Session expired, please login again");
                     handleLogout();
                     return;
                 }
@@ -64,15 +65,15 @@ export default function NavBar() {
         >
             <Image
                 className="absolute left-4 rounded-md cursor-pointer"
-                src={"/walmart-split.jpg"}
-                alt="Walmart Split Logo"
+                src={"/splitzy.jpg"}
+                alt="Splitzy Logo"
                 width={50}
                 height={50}
                 onClick={() => router.push("/")}
             />
             <Link href={"/"}>
                 <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                    Walmart split
+                    Splitzy
                 </h2>
             </Link>
 

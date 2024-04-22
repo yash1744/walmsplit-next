@@ -13,18 +13,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useContext, useEffect, useState } from "react";
 import { Card } from "./ui/card";
+import { Item } from "@/interfaces/interfaces";
+import { Pencil } from "lucide-react";
 
-export function NewItemDialog({
-    addNewItem,
+export function EditItemDialog({
+    editItem,
+    item,
+    uuid,
 }: {
-    addNewItem: (name: string, price: number) => void;
+    editItem: (id: string, name: string, price: number) => void;
+    item: Item;
+    uuid: string;
 }) {
-    const [itemName, setItemName] = useState<string>("");
-    const [itemPrice, setItemPrice] = useState<string>("0");
+    const [itemName, setItemName] = useState<string>(item.name);
+    const [itemPrice, setItemPrice] = useState<string>(item.price);
     const [open, setOpen] = useState<boolean>(false);
-    let suggestions = ["Driver Tip", "Delivery Fee", "Walmart Cash"];
-
-    const handleAddItem = () => {
+    const handleEditItem = () => {
         if (itemName.trim() === "") {
             alert("Item name cannot be empty");
             return;
@@ -41,10 +45,8 @@ export function NewItemDialog({
             alert("Item price must be a number");
             return;
         }
-        setItemName("");
-        setItemPrice("0");
         setOpen(false);
-        addNewItem(capitalizeFirstLetter(itemName), parseFloat(itemPrice));
+        editItem(uuid, capitalizeFirstLetter(itemName), parseFloat(itemPrice));
     };
     function capitalizeFirstLetter(string: string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -53,16 +55,11 @@ export function NewItemDialog({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Card
-                    className="w-72 flex justify-center items-center text-6xl cursor-pointer text-gray-400 min-h-[300px]    
-                 hover:text-green-700 hover:text-8xl hover:transition-all"
-                >
-                    +
-                </Card>
+                <Pencil className="cursor-pointer" />
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add New Custom Item</DialogTitle>
+                    <DialogTitle>Edit Item</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 ">
@@ -81,19 +78,6 @@ export function NewItemDialog({
                             required
                         />
                     </div>
-                    <div className="text-xs text-gray-500 pl-3">
-                        suggestions:{" "}
-                        {suggestions.map((suggestion) => (
-                            <span
-                                key={suggestion}
-                                onClick={() => setItemName(suggestion)}
-                                className="cursor-pointer border-2 rounded-lg p-1 m-1 border-gray-500 hover:border-green-700 hover:text-green-700 hover:font-bold transition-all"
-                            >
-                                {suggestion}
-                            </span>
-                        ))}
-                    </div>
-
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="price" className="text-right">
                             Item Price
@@ -144,7 +128,7 @@ export function NewItemDialog({
                 </div>
 
                 <DialogFooter>
-                    <Button onClick={handleAddItem}>Add Item</Button>
+                    <Button onClick={handleEditItem}>Save Changes</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

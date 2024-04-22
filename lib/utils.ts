@@ -11,7 +11,7 @@ export function findItemsTotal (expenses:any) {
 
 export function commentBuilder(description :string, itemsState:ItemsState[]){
     let comment:string = ""
-    comment += " ----------Walmart Split-------------\n"
+    comment += " ---------- Splitzy -------------\n"
     comment += ` -------  ${description}  -----------\n`
     
     itemsState.forEach((itemState)=>{

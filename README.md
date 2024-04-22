@@ -1,16 +1,16 @@
 <div align="center">
 
-  <img  style="display: block; margin: 0 auto;" src="https://github.com/yash1744/walmsplit-next/assets/63769766/ea315d19-65f1-481d-845b-699c7c46af75"></img>
+  <img  style="display: block; margin: 0 auto; height:200px; width:200px" src="https://github.com/yaswanthtondepu/Splitzy/blob/main/public/splitzy.jpg"></img>
   
 </div>
 
-<a href="https://walmsplit-next-git-temp-yash1744.vercel.app/" >
+<a href="https://splitzyy.vercel.app/" >
   
-  <h1 align="center">WalmartSplit</h1>
+  <h1 align="center">Splitzy</h1>
 </a>
 
 <p align="center">
-  An Easy Way to Manage Walmart Expenses
+  An Easy Way to Manage Your Expenses
 </p>
 
 
@@ -30,17 +30,18 @@
 
 # Features
 
-- Effortlessly Split and Share Walmart Expenses via Splitwise directly on the web
+- Effortlessly Split and Share Your Expenses via Splitwise directly on the web
 
   
 # Usage
-To use WalmartSplit, got to [WalmartSplit](https://walmsplit-next-git-temp-yash1744.vercel.app/) follow these steps:
+To use Splitzy, got to [Splitzy](https://splitzyy.vercel.app/) follow these steps:
 
 1. Login with your Splitwise account to start using app.
 2. Go to the Walmart orders page.
 3. Copy the page source of a purchase.
 4. Paste the page source in the welcome page of app.
 5. Select Friends you want to Split with and Done...
+6. You can also add your own custom expenses and split them with your friends.
 
 # Setting Up Locally
 
@@ -63,7 +64,7 @@ To set up locally, you'll need to clone the repository, copy the `.env.template`
 
 
 # Tech Stack
-WalmartSplit is built using the following technologies:
+Splitzy is built using the following technologies:
 
 - [Next.js](https://nextjs.org/)  : A framework for building web pages
 - [MongoDB](https://www.mongodb.com/) : A NoSQL database for caching the friends and group of users

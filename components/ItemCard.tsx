@@ -10,8 +10,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +17,9 @@ import { PageContext, PageContextType } from "../contexts/PageContext";
 import { useContext, useState } from "react";
 import { Item, Person } from "../contexts/PageContext";
 import Image from "next/image";
-import { SquareX } from "lucide-react";
+import { SquareX, Pencil, Edit } from "lucide-react";
+import { NewItemDialog } from "./NewItemDialog";
+import { EditItemDialog } from "./EditItemDialog";
 
 export default function CardWithForm({
     id,
@@ -28,6 +28,7 @@ export default function CardWithForm({
     tax,
     persons,
     removeItem,
+    editItem,
 }: {
     id: number;
     uuid: string;
@@ -35,6 +36,7 @@ export default function CardWithForm({
     tax: number;
     persons: Person[];
     removeItem: (id: string) => void;
+    editItem: (id: string, name: string, price: number) => void;
 }) {
     const {
         globalSelectedPersons,
@@ -85,6 +87,10 @@ export default function CardWithForm({
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [globalSelectedPersons]);
 
+    const handleEditItem = () => {
+       
+    };
+
     React.useEffect(() => {
         setItemlocalSelectedPersons(id, localSelectedPersons);
         localSelectedPersons.length === globalSelectedPersons.length &&
@@ -97,7 +103,7 @@ export default function CardWithForm({
         <Card className="w-72 relative">
             {/* <img className="w-full h-48 object-cover" src={image} alt=""></img> */}
             <div className="bg-black cursor-pointer absolute right-0 rounded-sm text-white hover:text-red-500 hover:bg-transparent transition-all">
-                <SquareX onClick={(e: any) => removeItem(uuid)}/>
+                <SquareX onClick={(e: any) => removeItem(uuid)} />
             </div>
             <Image
                 className="w-full h-48 object-cover"
@@ -108,7 +114,9 @@ export default function CardWithForm({
             ></Image>
             <Separator />
             <CardHeader className="pb-2 pt-0">
-                <h6 className="mt-4 text-sm font-semibold">{name}</h6>
+                <h6 className="mt-4 text-sm font-semibold break-words">
+                    {name}
+                </h6>
             </CardHeader>
             <CardContent className="pb-0 pt-2">
                 <div className="flex justify-between items">
@@ -135,12 +143,15 @@ export default function CardWithForm({
                         <Label htmlFor="airplane-mode">Select All</Label>
                     </div>
                 </div>
-                <CardTitle className="mt-4">{`$${parseFloat(
-                    (
-                        parseFloat(price) +
-                        (parseFloat(price) * tax) / 100
-                    ).toFixed(2)
-                )}`}</CardTitle>
+                <div className="flex justify-between items-end">
+                    <CardTitle className="mt-4">{`$${parseFloat(
+                        (
+                            parseFloat(price) +
+                            (parseFloat(price) * tax) / 100
+                        ).toFixed(2)
+                    )}`}</CardTitle>
+                  <EditItemDialog editItem={editItem} item={item} uuid={uuid} />
+                </div>
             </CardContent>
             {/* <Separator /> */}
             <CardFooter className="flex-wrap mt-4 ">

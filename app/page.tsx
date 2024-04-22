@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Footer from "@/components/Footer";
+import NavBar from "@/components/NavBar";
 
 
 export default function Home() {
@@ -18,20 +20,20 @@ export default function Home() {
         
     }, []);
     return (
-        <div>
+        <div className="h-full flex flex-col justify-between">
             <div
                 className={`bg-white p-4  sticky z-10 top-0  left-0 right-0 text-center border-b align-center items-center flex justify-center `}
             >
                 <Image
                     className="absolute left-4 rounded-md"
-                    src={"/walmart-split.jpg"}
-                    alt="Walmart Split Logo"
+                    src={"/splitzy.jpg"}
+                    alt="Splitzy Logo"
                     width={50}
                     height={50}
                 />
                 <Link href={"/"}>
                     <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                        Walmart split
+                        Splitzy
                     </h2>
                 </Link>
                 <div className="absolute right-4 flex">
@@ -63,7 +65,7 @@ export default function Home() {
                     )}
                 </div>
             </div>
-            <div className="flex flex-col text-[32px] font-extrabold items-center pt-20 sm:text-[40px] md:text-[56px] lg:text-[76px]  ">
+            <div className="flex flex-col text-[32px] font-extrabold items-center sm:text-[40px] md:text-[56px] lg:text-[76px]  ">
                 <span className="text-transparent animate-backgroundClip  bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                     An
                 </span>
@@ -71,10 +73,10 @@ export default function Home() {
                     Easy Way to
                 </span>
                 <span className="text-transparent animate-backgroundClip  bg-clip-text bg-gradient-to-r from-blue-800 to-blue-500">
-                    Manage Walmart Expenses
+                    Manage Your Expenses
                 </span>
                 <h2 className="text-xl text-center font-medium">
-                    Effortlessly Split and Share Walmart Expenses via Splitwise
+                    Effortlessly Split and Share Your Expenses via Splitwise
                     directly on the web
                 </h2>
                 <Button
@@ -90,6 +92,10 @@ export default function Home() {
                     {" "}
                     Get Started
                 </Button>
+            </div>
+
+            <div>
+                <Footer />
             </div>
         </div>
     );
